@@ -4,6 +4,9 @@ The variables we focused on were Income and Education Level and the impact of Ed
 
 load("~/Ecob2000_lecture1/Household_Pulse_data_ph4c2.RData")
 
+set.seed(12345)
+
+
 Household_Pulse_Filtered <- Household_Pulse_data %>%
   filter(ANYWORK == "yes employment in last 7 days" & !is.na(INCOME) & !is.na(EEDUC))
 
@@ -43,6 +46,9 @@ ggplot(Household_Pulse_Filtered, aes(x = EEDUC_Number, y = INCOME)) +
   theme_minimal()
 
 confint(model_education_income)
+
+NNobs <- length(Household_Pulse_Filtered$INCOME)
+graph_obs <- (runif(NNobs) < 0.5)
 
 Results and Findings: 
 
